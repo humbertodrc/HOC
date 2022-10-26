@@ -1,5 +1,4 @@
-export const getComents = async () => {
-	const url = `https://jsonplaceholder.typicode.com/comments`;
+export const getComents = async (url: string) => {
 
 	try {
 		const response = await fetch(url);

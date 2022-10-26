@@ -1,5 +1,4 @@
-export const getPost = async () => {
-	const url = `https://jsonplaceholder.typicode.com/posts`;
+export const getPost = async (url: string) => {
 
 	try {
 		const response = await fetch(url);
