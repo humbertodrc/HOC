@@ -1,4 +1,6 @@
-import { ComponentType, useEffect, useState } from "react";
+import {ComponentType, useEffect, useState} from "react";
+import { getData } from '../../service/getData';
+import {Spinner} from "../Spinner";
 
 export default function WithApi<T extends {}>(
 	Component: ComponentType<T>,
@@ -8,12 +10,10 @@ export default function WithApi<T extends {}>(
 		const [data, setData] = useState([]);
 
 		useEffect(() => {
-			fetch(url)
-				.then((res) => res.json())
-				.then((res) => {
-					setData(res);
-				});
+			getData(url).then((data) => setData(data));
 		}, []);
+
+		if (data.length === 0) return <Spinner />;
 
 		return <Component data={data} {...props} />;
 	};
