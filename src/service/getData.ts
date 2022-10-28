@@ -1,12 +1,11 @@
-export const getComents = async (url: string) => {
-
+export const getData = async (url: string) => {
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
 
-		// Validar si hay un error
-		if (response.status !== 200) {
-			throw new Error(data.message);
+		// Validar errores
+		if (data.error) {
+			throw new Error(data.error);
 		}
 
 		return data;
